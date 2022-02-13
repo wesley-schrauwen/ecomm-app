@@ -58,11 +58,11 @@ export const App = () => {
         {!isLoading && (
           <>
             <ProductsPanel products={products} onClickAddProductToCart={addProductToCart} shoppingCart={shoppingCart} onClickRemoveProductFromCart={removeProductFromCart}/>
-            <ShoppingSidebar />
+            <ShoppingSidebar onClickRemoveProductFromCart={removeProductFromCart} products={shoppingCart} />
           </>
         )}
       </CoreContent>
-      <Footer />
+      {/*<Footer />*/}
     </StyledApp>
   );
 }

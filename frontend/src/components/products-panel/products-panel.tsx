@@ -81,7 +81,7 @@ export const ProductsPanel = (props: Props) => {
   }, [searchFilter]);
 
   const cellRenderer = (cellProps: GridCellProps): React.ReactNode => {
-    const index = cellProps.rowIndex + (cellProps.columnIndex * 3);
+    const index = cellProps.rowIndex * 3 + cellProps.columnIndex;
     const product = filteredProducts[index];
 
     if (!product) {
@@ -126,9 +126,9 @@ export const ProductsPanel = (props: Props) => {
         <AutoSizer style={{ margin: '8px' }}>
           {({height, width}) => {
 
-            // We multiply by 3 because we have a columnCount of 3
-            const totalRows = Math.ceil(filteredProducts.length * 0.3);
-            const columnWidth = Math.round((width - 16) * 0.33);
+
+            const totalRows = Math.ceil(filteredProducts.length / 3);
+            const columnWidth = Math.round((width - 16) / 3);
 
             // A square shape with an extra 100 for the cell toolbar
             const cellHeight = columnWidth + 100;
