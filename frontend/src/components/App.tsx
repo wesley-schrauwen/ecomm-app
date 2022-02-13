@@ -10,13 +10,14 @@ const StyledApp = styled.div`
   background: red;
   height: 100vh;
   margin: 0 auto;
-  display: block;
+  display: flex;
+  flex-flow: column;
 `;
 
 const CoreContent = styled.div`
   display: flex;
   flex-flow: row;
-  min-height: 256px;
+  flex-grow: 1;
 `;
 
 function App() {

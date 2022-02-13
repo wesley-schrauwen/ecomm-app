@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const FooterStyle = styled.div`
   background: aliceblue;
-  width: 100%;
   height: 128px;
+  margin-bottom: 0;
+  margin-top: auto;
 `
 
 export const Footer = () => {
