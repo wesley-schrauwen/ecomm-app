@@ -7,7 +7,6 @@ import { ShoppingSidebar } from './shopping-sidebar';
 
 const StyledApp = styled.div`
   max-width: 1080px;
-  background: red;
   height: 100vh;
   margin: 0 auto;
   display: flex;
