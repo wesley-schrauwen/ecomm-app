@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Product } from '../../models/product';
 
 const ProductsPanelStyle = styled.div`
   background: aqua;
@@ -7,6 +8,11 @@ const ProductsPanelStyle = styled.div`
   display: block;
 `
 
-export const ProductsPanel = () => {
+interface Props {
+  products: Product[];
+  // onClickAddProductToCart: (product: Product) => void;
+}
+
+export const ProductsPanel = (props: Props) => {
   return <ProductsPanelStyle />
 }

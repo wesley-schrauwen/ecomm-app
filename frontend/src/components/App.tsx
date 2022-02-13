@@ -4,6 +4,8 @@ import { Header } from './header';
 import { Footer } from './footer';
 import { ProductsPanel } from './products-panel';
 import { ShoppingSidebar } from './shopping-sidebar';
+import { Product } from '../models/product';
+import { getAllProducts } from '../api/api';
 
 const StyledApp = styled.div`
   max-width: 1080px;
@@ -19,17 +21,22 @@ const CoreContent = styled.div`
   flex-grow: 1;
 `;
 
-function App() {
+export const App = () => {
+
+  const [products, setProducts] = React.useState<Product[]>([]);
+
+  React.useEffect(() => {
+    getAllProducts().then(setProducts)
+  }, [])
+
   return (
     <StyledApp>
       <Header />
       <CoreContent>
-        <ProductsPanel />
+        <ProductsPanel products={products} />
         <ShoppingSidebar />
       </CoreContent>
       <Footer />
     </StyledApp>
   );
 }
-
-export default App;
