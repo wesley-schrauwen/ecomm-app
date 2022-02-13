@@ -22,7 +22,7 @@ const CoreContent = styled.div`
 
 function App() {
   return (
-    <StyledApp className="App">
+    <StyledApp>
       <Header />
       <CoreContent>
         <ProductsPanel />
