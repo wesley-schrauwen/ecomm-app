@@ -1,0 +1,1 @@
+export { ShoppingSidebar } from './shopping-sidebar'
