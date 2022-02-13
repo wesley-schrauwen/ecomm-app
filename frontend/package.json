@@ -5,13 +5,14 @@
   "dependencies": {
     "@mui/icons-material": "^5.4.1",
     "@mui/material": "^5.4.1",
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "@mui/styled-engine-sc": "^5.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "react-virtualized": "^9.22.3",
     "styled-components": "^5.3.3",
-    "web-vitals": "^2.1.4",
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.2",
@@ -21,8 +22,10 @@
     "@types/node": "^16.11.24",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "@types/react-virtualized": "^9.21.18",
     "@types/styled-components": "^5.1.22",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "prettier": "^2.5.1"
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"

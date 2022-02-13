@@ -6,6 +6,7 @@ import { ProductsPanel } from './products-panel';
 import { ShoppingSidebar } from './shopping-sidebar';
 import { Product } from '../models/product';
 import { getAllProducts } from '../api/api';
+import { Autorenew } from '@mui/icons-material';
 
 const StyledApp = styled.div`
   max-width: 1080px;
@@ -24,17 +25,42 @@ const CoreContent = styled.div`
 export const App = () => {
 
   const [products, setProducts] = React.useState<Product[]>([]);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [shoppingCart, setShoppingCart] = React.useState<Product[]>([]);
 
   React.useEffect(() => {
-    getAllProducts().then(setProducts)
+    async function fetchProducts() {
+      const allProducts = await getAllProducts();
+      setProducts(allProducts);
+      setIsLoading(false);
+    }
+
+    setIsLoading(true);
+    fetchProducts();
   }, [])
+
+  const addProductToCart = (addedProduct: Product): void => {
+    if (shoppingCart.some(product => product.id === addedProduct.id)) {
+      return;
+    }
+
+    setShoppingCart([...shoppingCart, addedProduct]);
+  }
+
+  const removeProductFromCart = (removeProduct: Product): void => {
+    setShoppingCart(shoppingCart.filter(product => product.id !== removeProduct.id));
+  }
 
   return (
     <StyledApp>
       <Header />
       <CoreContent>
-        <ProductsPanel products={products} />
-        <ShoppingSidebar />
+        {!isLoading && (
+          <>
+            <ProductsPanel products={products} onClickAddProductToCart={addProductToCart} shoppingCart={shoppingCart} onClickRemoveProductFromCart={removeProductFromCart}/>
+            <ShoppingSidebar />
+          </>
+        )}
       </CoreContent>
       <Footer />
     </StyledApp>
