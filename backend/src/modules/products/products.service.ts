@@ -25,4 +25,18 @@ export class ProductsService {
 
     return this.products[randomItemIndex];
   }
+
+  getTotalPriceOfProducts(productIds: number[]): number {
+    let totalPrice = 0;
+
+    // this is not particularly efficient. The space of productIds will be shrinking over time and we also know
+    // the range of the numbers so this could be optimized if ever needed.
+    this.products.forEach((product) => {
+      if (productIds.includes(product.id)) {
+        totalPrice += product.cost;
+      }
+    });
+
+    return totalPrice;
+  }
 }

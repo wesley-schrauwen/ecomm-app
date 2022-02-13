@@ -1,8 +1,18 @@
-import { Controller, Get, Logger, Param, Post, Res } from '@nestjs/common';
-import { Product } from './models/product';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ParsePositiveIntPipe } from '../../pipes/parse-positive-int.pipe';
 import * as fs from 'fs';
+import { ProductDto } from './models/product.dto';
+import { CheckoutDto } from './models/checkout.dto';
+import { CheckoutResponseDto } from './models/checkout-response.dto';
 
 @Controller('/products')
 export class ProductsController {
@@ -13,12 +23,14 @@ export class ProductsController {
   }
 
   @Get('/')
-  async getProducts(): Promise<Product[]> {
+  async getProducts(): Promise<ProductDto[]> {
+    this.logger.log('getting list of all products');
     return this.productsService.getProducts();
   }
 
   @Get('/news-feed')
-  async getNewsFeed(): Promise<Product> {
+  async getNewsFeed(): Promise<ProductDto> {
+    this.logger.log('getting item for news feed');
     return this.productsService.getNewsFeedItem();
   }
 
@@ -39,7 +51,18 @@ export class ProductsController {
   }
 
   @Post('/check-out')
-  async checkoutProducts(): Promise<void> {
+  async checkoutProducts(
+    @Body() checkoutDto: CheckoutDto,
+  ): Promise<CheckoutResponseDto> {
+    this.logger.log('doing checkout');
 
+    const totalPrice = this.productsService.getTotalPriceOfProducts(
+      checkoutDto.productIds,
+    );
+
+    return {
+      success: true,
+      total_price: totalPrice,
+    };
   }
 }
