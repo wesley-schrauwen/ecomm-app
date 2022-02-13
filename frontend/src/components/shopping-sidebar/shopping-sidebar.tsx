@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import { Card, Icon, InputAdornment, TextField } from '@mui/material';
+import { Card, Icon, InputAdornment, Paper, TextField } from '@mui/material';
 import { Product } from '../../models/product';
 import React from 'react';
 import { List, ListRowProps } from 'react-virtualized';
+import { buildProductChampionPhotoURL } from '../../api/utils';
 
-const ShoppingSidebarStyle = styled(Card)`
+const ShoppingSidebarStyle = styled(Paper)`
   background: whitesmoke;
-  width: 384px;
+  width: 284px;
   height: 640px;
   display: flex;
   flex-flow: column;
@@ -17,9 +18,7 @@ interface Props {
   products: Product[];
 }
 
-const ListCell = styled.div`
-  background: blue;
-`;
+const ListCell = styled.div``;
 
 const PriceTextField = styled(TextField).attrs({
   variant: 'outlined',
@@ -29,6 +28,12 @@ const PriceTextField = styled(TextField).attrs({
   margin: auto;
   display: block;
 `;
+
+const ListCellPhoto = styled.img`
+  width: 64px;
+  height: 64px;
+`
+
 
 export const ShoppingSidebar = (props: Props) => {
 
@@ -40,16 +45,24 @@ export const ShoppingSidebar = (props: Props) => {
     );
   }, [props.products])
 
-  const rowRenderer = (props: ListRowProps): React.ReactNode => {
-    return <ListCell {...props} />
+  const rowRenderer = (listRowProps: ListRowProps): React.ReactNode => {
+
+    const product = props.products[listRowProps.index];
+    const imageURL = buildProductChampionPhotoURL(product.id);
+
+    return (
+      <ListCell {...listRowProps}>
+        <ListCellPhoto src={imageURL} alt={'Image of car in cart'}/>
+      </ListCell>
+    );
   };
 
   return (
-    <ShoppingSidebarStyle>
+    <ShoppingSidebarStyle elevation={3}>
       <List
         rowCount={props.products.length}
         rowHeight={128}
-        width={356}
+        width={284}
         height={512}
         rowRenderer={rowRenderer}
       />

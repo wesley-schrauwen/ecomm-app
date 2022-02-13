@@ -16,7 +16,7 @@ const Banner = styled.img`
 
 export const Header = () => {
   return (
-    <HeaderStyle>
+    <HeaderStyle elevation={1}>
       <Banner src='./banner.jpg' alt='Company Banner'/>
     </HeaderStyle>
   );

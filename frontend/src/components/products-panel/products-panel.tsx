@@ -40,7 +40,7 @@ const ProductCard = styled(Card)`
 const ProductCardActionBar = styled.div`
   height: 48px;
   display: flex;
-  background: ${THEME.BLUE_ACCENT};
+  background: whitesmoke;
 `;
 
 const CardActionButton = styled(Button).attrs({
