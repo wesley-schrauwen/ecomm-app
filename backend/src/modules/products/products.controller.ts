@@ -42,7 +42,7 @@ export class ProductsController {
     this.logger.log('getting product champion');
     // This is just to make things use a little less space. The data set used has up to 15k image samples
     // and in the mock we have 200, so there is enough in the total set however 20 should be enough for demo purposes
-    const index = `${productId % 20}`.padStart(5, '00000');
+    const index = `${(productId % 20) + 1}`.padStart(5, '00000');
     try {
       fs.createReadStream(`./src/public/${index}.jpg`).pipe(response);
     } catch (error) {
