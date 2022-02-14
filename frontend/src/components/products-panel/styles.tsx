@@ -3,8 +3,14 @@ import { Button, Card, TextField } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 export const ProductsPanelStyle = styled.div`
+  display: flex;
   width: 100%;
-  height: auto;
+  flex-flow: column;
+  height: 100%;
+`;
+
+export const ContentPanel = styled.div`
+  flex-grow: 1;
 `
 
 export const Toolbar = styled.div`

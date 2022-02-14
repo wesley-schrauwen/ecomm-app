@@ -10,9 +10,9 @@ import {
   ProductCard,
   ProductCardActionBar,
   ProductCell,
-  ProductsPanelStyle,
+  ContentPanel,
   Toolbar,
-  ToolbarSearchField
+  ToolbarSearchField, ProductsPanelStyle
 } from './styles';
 import { NewsBanner } from '../news-banner/news-banner';
 
@@ -60,9 +60,9 @@ export const ProductsPanel = (props: Props) => {
   }
 
   return (
-    <>
+    <ProductsPanelStyle>
       <NewsBanner />
-      <ProductsPanelStyle>
+      <ContentPanel>
         <Toolbar>
           <ToolbarSearchField
             InputProps={
@@ -79,9 +79,12 @@ export const ProductsPanel = (props: Props) => {
         <AutoSizer style={{ margin: '8px' }}>
           {({height, width}) => {
 
+            console.log(width);
 
             const totalRows = Math.ceil(filteredProducts.length / 3);
             const columnWidth = Math.round((width - 16) / 3);
+
+            console.log(columnWidth);
 
             // A square shape with an extra 100 for the cell toolbar
             const cellHeight = columnWidth + 100;
@@ -99,7 +102,7 @@ export const ProductsPanel = (props: Props) => {
             );
           }}
         </AutoSizer>
-      </ProductsPanelStyle>
-    </>
+      </ContentPanel>
+    </ProductsPanelStyle>
   )
 }
