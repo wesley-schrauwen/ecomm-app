@@ -50,6 +50,4 @@ describe('Products Controller', () => {
       expect(status).toEqual(400);
     });
   });
-
-
 });
