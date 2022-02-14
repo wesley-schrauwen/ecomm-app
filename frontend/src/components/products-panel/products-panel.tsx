@@ -1,69 +1,19 @@
-import styled from 'styled-components';
 import { Product } from '../../models/product';
 import React from 'react';
-import { Button, Card, InputAdornment, TextField } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import { Add, Remove, SearchOutlined } from '@mui/icons-material';
 import { AutoSizer, Grid, GridCellProps } from 'react-virtualized'
 import { buildProductChampionPhotoURL } from '../../api/utils';
-import Typography from '@mui/material/Typography';
-import { THEME } from '../styles';
-
-const ProductsPanelStyle = styled.div`
-  width: 100%;
-  height: auto;
-`
-
-const Toolbar = styled.div`
-  width: 100%;
-  height: 48px;
-`
-
-const ToolbarSearchField = styled(TextField).attrs({
-  label: 'Search by brand',
-  variant: 'standard'
-})`
-  width: 228px;
-  margin-left: 8px;
-`;
-
-const ProductCell = styled.div`
-  display: block;
-`;
-
-const ProductCard = styled(Card)`
-  margin: auto;
-  height: 95%;
-  width: 95%;
-  background: whitesmoke;
-`;
-
-const ProductCardActionBar = styled.div`
-  height: 48px;
-  display: flex;
-  background: whitesmoke;
-`;
-
-const CardActionButton = styled(Button).attrs({
-  variant: 'outlined',
-})`
-  height: 32px;
-  min-width: 64px;
-  margin: auto 8px auto auto;
-`
-
-const CardTitle = styled(Typography).attrs({
-  variant: 'body1'
-})`
-  display: block;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: 8px;
-`
-
-const CardImage = styled.img`
-  width: 100%;
-  height: 100%;
-`
+import {
+  CardActionButton,
+  CardImage, CardTitle,
+  ProductCard,
+  ProductCardActionBar,
+  ProductCell,
+  ProductsPanelStyle,
+  Toolbar,
+  ToolbarSearchField
+} from './styles';
 
 interface Props {
   shoppingCart: Product[];
@@ -78,7 +28,7 @@ export const ProductsPanel = (props: Props) => {
 
   React.useEffect(() => {
     setFilteredProducts(props.products.filter(product => product.car_brand.toLowerCase().includes(searchFilter.toLowerCase())))
-  }, [searchFilter]);
+  }, [props.products, searchFilter]);
 
   const cellRenderer = (cellProps: GridCellProps): React.ReactNode => {
     const index = cellProps.rowIndex * 3 + cellProps.columnIndex;
