@@ -16,7 +16,7 @@ import {
 } from './styles';
 import { NewsBanner } from '../news-banner/news-banner';
 
-interface Props {
+export interface Props {
   shoppingCart: Product[];
   products: Product[];
   onClickAddProductToCart: (product: Product) => void;
@@ -44,7 +44,7 @@ export const ProductsPanel = (props: Props) => {
 
     return (
       <ProductCell {...cellProps}>
-        <ProductCard>
+        <ProductCard aria-label={'product-card'}>
           <ProductCardActionBar>
             <CardTitle variant={'body1'}>{product.car_brand}</CardTitle>
             {isInCart ?
@@ -74,7 +74,7 @@ export const ProductsPanel = (props: Props) => {
       <NewsBanner />
       <ContentPanel>
         <Toolbar>
-          <ToolbarSearchField
+          <ToolbarSearchField aria-label={'input-search-field'}
             InputProps={
               {
                 startAdornment:

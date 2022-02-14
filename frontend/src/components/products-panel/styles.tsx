@@ -20,7 +20,8 @@ export const Toolbar = styled.div`
 
 export const ToolbarSearchField = styled(TextField).attrs({
   label: 'Search by brand',
-  variant: 'standard'
+  variant: 'standard',
+  placeholder: 'Search'
 })`
   width: 228px;
   margin-left: 8px;
