@@ -14,6 +14,7 @@ import {
   Toolbar,
   ToolbarSearchField
 } from './styles';
+import { NewsBanner } from '../news-banner/news-banner';
 
 interface Props {
   shoppingCart: Product[];
@@ -59,20 +60,22 @@ export const ProductsPanel = (props: Props) => {
   }
 
   return (
-    <ProductsPanelStyle>
-      <Toolbar>
-        <ToolbarSearchField
-          InputProps={
-            {
-              startAdornment:
-                <InputAdornment position={'start'}>
-                  <SearchOutlined/>
-                </InputAdornment>
+    <>
+      <NewsBanner />
+      <ProductsPanelStyle>
+        <Toolbar>
+          <ToolbarSearchField
+            InputProps={
+              {
+                startAdornment:
+                  <InputAdornment position={'start'}>
+                    <SearchOutlined/>
+                  </InputAdornment>
+              }
             }
-          }
-          onChange={(event) => setSearchFilter(event.target.value)}
-        />
-      </Toolbar>
+            onChange={(event) => setSearchFilter(event.target.value)}
+          />
+        </Toolbar>
         <AutoSizer style={{ margin: '8px' }}>
           {({height, width}) => {
 
@@ -96,6 +99,7 @@ export const ProductsPanel = (props: Props) => {
             );
           }}
         </AutoSizer>
-    </ProductsPanelStyle>
+      </ProductsPanelStyle>
+    </>
   )
 }
