@@ -4,7 +4,7 @@ import * as fs from 'fs';
 
 @Injectable()
 export class ProductsService {
-  private readonly products: Product[];
+  private products: Product[];
 
   constructor() {
     this.products = JSON.parse(

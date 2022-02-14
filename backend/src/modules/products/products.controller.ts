@@ -49,20 +49,4 @@ export class ProductsController {
       this.logger.error('failed to successfully stream', error);
     }
   }
-
-  @Post('/check-out')
-  async checkoutProducts(
-    @Body() checkoutDto: CheckoutDto,
-  ): Promise<CheckoutResponseDto> {
-    this.logger.log('doing checkout');
-
-    const totalPrice = this.productsService.getTotalPriceOfProducts(
-      checkoutDto.productIds,
-    );
-
-    return {
-      success: true,
-      total_price: totalPrice,
-    };
-  }
 }
