@@ -1,60 +1,24 @@
-import styled from 'styled-components';
-import { Button, Card, Icon, IconButton, InputAdornment, Paper, TextField } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import { Product } from '../../models/product';
 import React from 'react';
 import { List, ListRowProps } from 'react-virtualized';
 import { buildProductChampionPhotoURL } from '../../api/utils';
 import { Remove } from '@mui/icons-material';
-import Typography from '@mui/material/Typography';
+import {
+  ListCell,
+  ListCellButton,
+  ListCellContainer,
+  ListCellPhoto,
+  ListCellTitle,
+  PriceTextField,
+  ShoppingSidebarStyle
+} from './styles';
 
-const ShoppingSidebarStyle = styled(Paper)`
-  background: whitesmoke;
-  width: 284px;
-  height: 640px;
-  display: flex;
-  flex-flow: column;
-`;
 
-interface Props {
+export interface Props {
   onClickRemoveProductFromCart: (product: Product) => void;
   products: Product[];
 }
-
-const ListCell = styled.div``;
-
-const PriceTextField = styled(TextField).attrs({
-  variant: 'outlined',
-  disabled: true,
-  label: 'Total'
-})`
-  margin: auto;
-  display: block;
-`;
-
-const ListCellPhoto = styled.img`
-  width: 64px;
-  height: 64px;
-`
-
-const ListCellContainer = styled.div`
-  display: flex;
-  flex-flow: row;
-  margin: 8px;
-`;
-
-const ListCellButton = styled(IconButton)`
-  margin: auto;
-  margin-right: 8px;
-  height: 32px;
-  width: 32px;
-`;
-
-const ListCellTitle = styled(Typography).attrs({
-  variant: 'body1'
-})`
-  display: block;
-  margin: auto auto auto 8px;
-`
 
 export const ShoppingSidebar = (props: Props) => {
 
@@ -73,10 +37,10 @@ export const ShoppingSidebar = (props: Props) => {
 
     return (
       <ListCell {...listRowProps}>
-        <ListCellContainer>
-          <ListCellPhoto src={imageURL} alt={'Image of car in cart'}/>
+        <ListCellContainer aria-label={'cart-item'}>
+          <ListCellPhoto src={imageURL} alt={'image of car in cart'}/>
           <ListCellTitle>{product.car_brand}</ListCellTitle>
-          <ListCellButton aria-label={'remove-item-from-cart'} onClick={() => props.onClickRemoveProductFromCart(product)}><Remove /></ListCellButton>
+          <ListCellButton aria-label={'btn-remove-item-from-cart'} onClick={() => props.onClickRemoveProductFromCart(product)}><Remove /></ListCellButton>
         </ListCellContainer>
       </ListCell>
     );
@@ -91,8 +55,11 @@ export const ShoppingSidebar = (props: Props) => {
         height={512}
         rowRenderer={rowRenderer}
       />
-        <PriceTextField variant={'outlined'} value={totalPrice} disabled={true}
-                        aria-label={'total-cart-price'}
+        <PriceTextField
+          variant={'outlined'}
+          value={totalPrice}
+          disabled={true}
+          aria-label={'total-cart-price'}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">$</InputAdornment>
