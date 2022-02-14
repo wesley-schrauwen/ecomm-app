@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header } from './header';
-import { Footer } from './footer';
 import { ProductsPanel } from './products-panel';
 import { ShoppingSidebar } from './shopping-sidebar';
 import { Product } from '../models/product';
 import { getAllProducts } from '../api/api';
-import { Autorenew } from '@mui/icons-material';
 
 const StyledApp = styled.div`
   max-width: 1080px;
@@ -57,12 +55,19 @@ export const App = () => {
       <CoreContent>
         {!isLoading && (
           <>
-            <ProductsPanel products={products} onClickAddProductToCart={addProductToCart} shoppingCart={shoppingCart} onClickRemoveProductFromCart={removeProductFromCart}/>
-            <ShoppingSidebar onClickRemoveProductFromCart={removeProductFromCart} products={shoppingCart} />
+            <ProductsPanel
+              products={products}
+              onClickAddProductToCart={addProductToCart}
+              shoppingCart={shoppingCart}
+              onClickRemoveProductFromCart={removeProductFromCart}
+            />
+            <ShoppingSidebar
+              onClickRemoveProductFromCart={removeProductFromCart}
+              products={shoppingCart}
+            />
           </>
         )}
       </CoreContent>
-      {/*<Footer />*/}
     </StyledApp>
   );
 }

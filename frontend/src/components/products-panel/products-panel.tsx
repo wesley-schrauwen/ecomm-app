@@ -48,10 +48,20 @@ export const ProductsPanel = (props: Props) => {
           <ProductCardActionBar>
             <CardTitle variant={'body1'}>{product.car_brand}</CardTitle>
             {isInCart ?
-              <CardActionButton aria-label={'remove-car-from-cart'} onClick={() => props.onClickRemoveProductFromCart(product)} endIcon={<Remove />}>Remove</CardActionButton>
-              : <CardActionButton aria-label={'add-car-to-cart'} onClick={() => props.onClickAddProductToCart(product)} endIcon={<Add />}>
-              Add
-            </CardActionButton>}
+              <CardActionButton
+                aria-label={'btn-remove-car-from-cart'}
+                onClick={() => props.onClickRemoveProductFromCart(product)}
+                endIcon={
+                  <Remove />
+                }>
+                Remove
+              </CardActionButton>
+              : <CardActionButton
+                aria-label={'btn-add-car-to-cart'}
+                onClick={() => props.onClickAddProductToCart(product)}
+                endIcon={<Add />}>
+                Add
+                </CardActionButton>}
           </ProductCardActionBar>
           <CardImage src={imageString} alt='Photo of car' />
         </ProductCard>
@@ -79,13 +89,8 @@ export const ProductsPanel = (props: Props) => {
         <AutoSizer style={{ margin: '8px' }}>
           {({height, width}) => {
 
-            console.log(width);
-
             const totalRows = Math.ceil(filteredProducts.length / 3);
             const columnWidth = Math.round((width - 16) / 3);
-
-            console.log(columnWidth);
-
             // A square shape with an extra 100 for the cell toolbar
             const cellHeight = columnWidth + 100;
 
